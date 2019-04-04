@@ -29,7 +29,7 @@
 
 ![](./img/cross.png)
 
-这是浏览器自身的安全机制造成的，再chrome下需要屏蔽跨域检查，在桌面chrome快捷方式-右键-属性-目标，加上一行--disable-web-security，注意空格，比如我的是
+这是浏览器自身的安全机制造成的，再chrome下需要屏蔽跨域检查，在桌面chrome快捷方式-右键-属性-目标，加上一行--disable-web-security，注意空格，比如
 C:\Users\xxx\AppData\Local\Google\Chrome\Application\chrome.exe --disable-web-security --user-data-dir=C:\MyChromeDevUserData
 
 打开chrome，出现以下提示表示屏蔽成功：
@@ -47,7 +47,7 @@ C:\Users\xxx\AppData\Local\Google\Chrome\Application\chrome.exe --disable-web-se
 
 ### 3.1、Web版
 
-web版通过NodeJS版转换而来，并重命名为[FiscoUtil.js](./web/js/FiscoUtil.js)，导入FiscoUtil.js：
+web版通过NodeJS版转换而来，并重命名为[fiscoUtil.js](./web/js/fiscoUtil.js)，导入fiscoUtil.js：
 
 ```
 <script src="js/fiscoUtil.js"></script>
