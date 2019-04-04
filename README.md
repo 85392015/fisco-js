@@ -34,7 +34,7 @@ C:\Users\xxx\AppData\Local\Google\Chrome\Application\chrome.exe --disable-web-se
 
 打开chrome，出现以下提示表示屏蔽成功：
 
-![](./img/diable.png)
+![](./img/disable.png)
 
 ### 2.2、NodeJS版
 
