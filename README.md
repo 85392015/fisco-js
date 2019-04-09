@@ -101,8 +101,38 @@ const BN = require('bn.js')
 
 使用方法与Web版类同，不再复述。
 
+## 四、部署合约
+仅NodeJS支持该功能，因为Web版不能调用solc编译器
+需要先安装[FISCO solc编译器](https://github.com/FISCO-BCOS/solidity/releases)，建议下载0.4.25版本，解压后配置好环境变量即可，打开命令行，输入solc --version：
 
-## 四、目前已知问题
+![](./img/solc.png)
+
+说明安装成功！
+
+导包
+
+```
+const fs = require('fs')
+const execSync = require('child_process').execSync
+```
+
+编译.sol合约文件
+
+```
+execSync('solc --bin -o D:\\temp\\ D:\\project\\BCOS\\ERC20.sol')
+var bin = fs.readFileSync('D:\\temp\\ERC20.bin', 'utf-8')
+```
+
+注意双斜杠，跟linux路径写法不同。这里意思是把 ERC20.sol 编译到 D:\temp\ERC20.bin，如果 ERC20.sol 引用了 zeppelin-solidity 里的.sol，会一起编译。编译成功后，读取 ERC20.bin 为字符串（注意这里字符串不带0x前缀）
+
+```
+var signTX = web3sync.getDeploySignTX(account, privateKey, bin, 1000)
+```
+
+getDeploySignTX() 自动处理了bin的0x前缀问题，1000是blockLimit，正常情况应该是当前区块高度+1000，这里省略了。最后通过 sendRawTransaction 发送到JSON-RPC，已给出简单的示例 [web3lib/test.js](./web3lib/test.js)
+
+
+## 五、目前已知问题
 
 1.太臃肿，后续再优化
 

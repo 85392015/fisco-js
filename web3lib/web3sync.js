@@ -581,7 +581,6 @@ Transaction.prototype.validate = function (stringError) {
     return errors.join(' ')
   }
 }
-
 exports.Transaction = Transaction;
 
 function signTransaction(tx_data, privKey, callback) {
@@ -599,6 +598,7 @@ function signTransaction(tx_data, privKey, callback) {
     return serializedTx;
   }
 }
+exports.signTransaction = signTransaction;
 
 function getSignTX(account, privateKey, to, func, params, blockLimit) {
   var tx_data = getTxData(func, params);
@@ -616,6 +616,24 @@ function getSignTX(account, privateKey, to, func, params, blockLimit) {
   return signTX;
 }
 exports.getSignTX = getSignTX;
+
+function getDeploySignTX(account, privateKey, bin, blockLimit) {
+  var tx_data = bin.indexOf('0x') == 0 ? bin : ('0x'+bin)
+  console.log(tx_data)
+
+  var postdata = {
+    data: tx_data,
+    from: account,
+    to: null,
+    gas: 1000000,
+    randomid: Math.ceil(Math.random() * 100000000),
+    blockLimit: blockLimit,
+  }
+
+  var signTX = signTransaction(postdata, privateKey, null);
+  return signTX;
+}
+exports.getDeploySignTX = getDeploySignTX;
 
 function getTxData(func, params) {
   // var r = /^\w+\((.+)\)$/g.exec(func);
