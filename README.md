@@ -103,6 +103,7 @@ const BN = require('bn.js')
 
 ## 四、部署合约
 仅NodeJS支持该功能，因为Web版不能调用solc编译器
+
 需要先安装[FISCO solc编译器](https://github.com/FISCO-BCOS/solidity/releases)，建议下载0.4.25版本，解压后配置好环境变量即可，打开命令行，输入solc --version：
 
 ![](./img/solc.png)
